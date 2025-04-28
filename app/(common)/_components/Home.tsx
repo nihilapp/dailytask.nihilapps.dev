@@ -3,8 +3,6 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import { cn } from '@/_libs';
-import { LoadingCircle } from '@/(common)/_components/LoadingCircle';
-import { SignOutButton } from '@/(common)/_components/SignOutButton';
 
 interface Props
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -34,7 +32,8 @@ export function Home({ className, ...props }: Props) {
     >
       content
       <div>
-        <SignOutButton />
+        {/* 대충 프로젝트에 대한 설명 페이지. 랜딩 페이지. */}
+        content
       </div>
     </div>
   );
