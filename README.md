@@ -10,11 +10,12 @@ Next.js를 간편하게 사용하기 위한 템플릿입니다. 이 템플릿은
 
 ## 스택
 
-- **상태 관리**: `zustand`를 사용하여 전역 상태를 간편하게 관리합니다.
+- **상태 관리**: `zustand` v5를 사용하여 전역 상태를 간편하게 관리합니다.
 - **폼 컨트롤**: `react-hook-form`, `yup`을 사용하여 폼 유효성 검사를 간편하게 처리합니다.
-- **서버 통신**: `axios`, `tanstack react-query`를 사용하여 서버와의 통신을 효율적으로 관리합니다.
-- **스타일링**: `tailwindcss`, `class-variance-authority`를 사용하여 반응형 디자인을 구현합니다.
-- **데이터베이스**: `Prisma`를 사용하여 데이터베이스 연동이 준비되어 있습니다.
+- **서버 통신**: `axios`, `tanstack react-query` v5를 사용하여 서버와의 통신을 효율적으로 관리합니다.
+- **스타일링**: `tailwindcss` v4, `class-variance-authority`를 사용하여 반응형 디자인을 구현합니다.
+- **데이터베이스**: `Prisma` v6를 사용하여 데이터베이스 연동이 준비되어 있습니다.
+- **패키지 관리**: `pnpm`을 사용하여 의존성을 효율적으로 관리합니다.
 
 ## 설치 및 실행
 
@@ -28,13 +29,13 @@ Next.js를 간편하게 사용하기 위한 템플릿입니다. 이 템플릿은
 2. **패키지 설치**:
 
    ```bash
-   yarn install
+   pnpm install
    ```
 
 3. **개발 서버 실행**:
 
    ```bash
-   yarn run serve
+   pnpm serve
    ```
 
    브라우저에서 `http://localhost:3000`을 열어 결과를 확인하세요.
