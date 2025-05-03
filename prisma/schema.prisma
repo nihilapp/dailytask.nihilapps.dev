@@ -15,29 +15,39 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+// NextJS 프로젝트가 가지는 공통적인 테이블 / 데이터들.
 enum UserRole {
   ADMIN
   USER
 }
 
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
 model User {
-  id           String    @id @default(uuid())
-  email        String    @unique
+  id           String     @id @default(uuid())
+  email        String     @unique
   name         String?
   image_url    String?
-  role         UserRole  @default(USER)
+  role         UserRole   @default(USER)
   last_sign_in DateTime?
-  created_at   DateTime  @default(now())
-  updated_at   DateTime  @updatedAt
+  status       UserStatus @default(ACTIVE)
+  created_at   DateTime   @default(now())
+  updated_at   DateTime   @updatedAt
 
-  user_auth UserAuth? // 1:1 관계
+  user_auth       UserAuth?
+  issues          Issue[]
+  project_members ProjectMember[]
+  todos           Todo[]
 
   @@map("users")
 }
 
 model UserAuth {
   id              String   @id @default(uuid())
-  user_id         String   @unique // User 모델과의 관계를 위한 외래 키
+  user_id         String   @unique
   hashed_password String?
   refresh_token   String?
   created_at      DateTime @default(now())
@@ -46,4 +56,135 @@ model UserAuth {
   user User @relation(fields: [user_id], references: [id], onDelete: Cascade)
 
   @@map("user_auths")
+}
+
+// 각 프로젝트별로 필요한 추가적인 테이블 / 데이터
+
+// 업무의 열림/닫힘 여부
+enum IssueOpenStatus {
+  OPENED
+  PROGRESSING
+  CLOSED
+}
+
+// 업무의 상태 (이상 없음, 수정필요, 보류 등)
+enum IssueStatus {
+  NONE // 상태 없음
+  PASSED // 완료
+  BLOCKED // 보류
+  REJECTED // 제외
+  CRITICAL // 긴급
+}
+
+// 팀의 멤버 역할
+enum TeamMemberRole {
+  ADMIN // 팀 관리자
+  MEMBER // 일반 멤버
+}
+
+// 투두 상태
+enum TodoStatus {
+  WAITING
+  IN_PROGRESS
+  COMPLETED
+}
+
+model Project {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  issues          Issue[]
+  project_members ProjectMember[]
+  issue_types     IssueType[]
+
+  @@map("projects")
+}
+
+model ProjectMember {
+  id         String         @id @default(uuid())
+  project_id String
+  user_id    String
+  role       TeamMemberRole @default(MEMBER)
+  created_at DateTime       @default(now())
+  updated_at DateTime       @updatedAt
+
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+
+  @@unique([project_id, user_id])
+  @@map("project_members")
+}
+
+model IssueType {
+  id          String   @id @default(uuid())
+  project_id  String
+  name        String
+  description String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+
+  project       Project       @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  issues        Issue[]
+  issue_schemas IssueSchema[]
+
+  @@unique([project_id, name])
+  @@map("issue_types")
+}
+
+model IssueSchema {
+  id            String   @id @default(uuid())
+  issue_type_id String
+  schema_json   Json // 필드 정의를 JSON으로 저장
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+
+  issue_type IssueType @relation(fields: [issue_type_id], references: [id], onDelete: Cascade)
+
+  @@map("issue_schemas")
+}
+
+model Issue {
+  id             String          @id @default(uuid())
+  user_id        String
+  project_id     String
+  issue_type_id  String
+  upper_issue_id String? // 상위 이슈 ID
+  code           String
+  order          Int
+  title          String
+  description    String?
+  custom_fields  Json? // 타입별 커스텀 필드 값
+  open_status    IssueOpenStatus @default(OPENED)
+  status         IssueStatus     @default(NONE)
+  created_at     DateTime        @default(now())
+  updated_at     DateTime        @updatedAt
+
+  user        User      @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  project     Project   @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  issue_type  IssueType @relation(fields: [issue_type_id], references: [id], onDelete: Cascade)
+  upper_issue Issue?    @relation("IssueHierarchy", fields: [upper_issue_id], references: [id], onDelete: SetNull)
+  sub_issues  Issue[]   @relation("IssueHierarchy")
+
+  @@unique([code, order])
+  @@map("issues")
+}
+
+model Todo {
+  id            String     @id @default(uuid())
+  user_id       String
+  upper_todo_id String? // 상위 투두 ID
+  title         String
+  description   String?
+  status        TodoStatus @default(WAITING)
+  created_at    DateTime   @default(now())
+  updated_at    DateTime   @updatedAt
+
+  user       User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  upper_todo Todo?  @relation("TodoHierarchy", fields: [upper_todo_id], references: [id], onDelete: SetNull)
+  sub_todos  Todo[] @relation("TodoHierarchy")
+
+  @@map("todos")
 }

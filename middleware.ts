@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 
 // 미들웨어가 실행될 경로를 정의합니다.
-// API 라우트, Next.js 내부 경로, 정적 파일, 로그인 페이지 등은 제외합니다.
+// API 라우트, Next.js 내부 경로, 정적 파일, 로그인 페이지, 인덱스 페이지 등은 제외합니다.
 export const config = {
   matcher: [
     /*
@@ -11,8 +11,9 @@ export const config = {
      * - _next/image (이미지 최적화 파일)
      * - favicon.ico (파비콘 파일)
      * - auth/signin (로그인 페이지)
+     * - / (인덱스 페이지)
      */
-    '/((?!api|_next/static|_next/image|favicon.ico|auth/signin).*)',
+    '/((?!api|_next/static|_next/image|favicon.ico|auth/signin|$).*)',
   ],
 };
 
