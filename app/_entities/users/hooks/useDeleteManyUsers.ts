@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { UsersApi } from '@/_entities/users/users.api';
-import { userKeys } from '@/_data';
+import { userKeys } from '@/_entities/users';
 
 export function useDeleteManyUsers() {
   const queryClient = useQueryClient();

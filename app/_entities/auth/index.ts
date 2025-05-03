@@ -7,4 +7,4 @@ export { useRefresh } from './hooks/useRefresh';
 export {
   useUserSession,
   useAuthActions
-} from './store';
+} from './auth.store';

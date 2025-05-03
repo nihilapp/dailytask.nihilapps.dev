@@ -9,3 +9,5 @@ export { useUpdatePassword } from './hooks/useUpdatePassword';
 export { useUpdateImage } from './hooks/useUpdateImage';
 export { useDeleteUser } from './hooks/useDeleteUser';
 export { useDeleteManyUsers } from './hooks/useDeleteManyUsers';
+
+export { userKeys } from './users.keys';

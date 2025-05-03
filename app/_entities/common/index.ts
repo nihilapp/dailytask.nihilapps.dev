@@ -1,7 +1,7 @@
 export {
   useIsDarkMode,
   useCommonActions
-} from './store';
+} from './common.store';
 
 export { useLoading } from './hooks/useLoading';
 export { useDone } from './hooks/useDone';

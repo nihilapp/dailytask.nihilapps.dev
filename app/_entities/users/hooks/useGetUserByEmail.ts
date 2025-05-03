@@ -1,5 +1,5 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
-import { userKeys } from '@/_data';
+import { userKeys } from '@/_entities/users';
 import { UsersApi } from '@/_entities/users/users.api';
 import { useDone, useLoading } from '@/_entities/common';
 

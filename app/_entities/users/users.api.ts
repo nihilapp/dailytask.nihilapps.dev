@@ -1,5 +1,5 @@
-import { User } from '@prisma/client';
 import { Api } from '@/_libs';
+import type { User } from '@/_prisma/client';
 import type {
   CreateUser, UpdateUser, UpdateUserImage, UpdateUserPassword
 } from '@/_types';

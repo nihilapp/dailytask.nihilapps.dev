@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { User } from '@prisma/client';
+import type { User } from '@/_prisma/client';
 import type { ApiResponse, ApiError } from '@/_types';
 import { DB } from '@/api/_libs';
 

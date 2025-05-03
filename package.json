@@ -64,7 +64,6 @@
     "postcss": "^8.5.3",
     "prisma": "^6.7.0",
     "sass": "^1.87.0",
-    "supabase": "^2.22.6",
     "tailwindcss": "^4.1.5",
     "typescript": "^5.8.3",
     "typescript-plugin-css-modules": "^5.1.0"
