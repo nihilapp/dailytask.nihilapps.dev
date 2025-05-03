@@ -32,8 +32,7 @@ export function Home({ className, ...props }: Props) {
     >
       content
       <div>
-        {/* 대충 프로젝트에 대한 설명 페이지. 랜딩 페이지. */}
-        content
+        대충 프로젝트 설명 하는 페이지
       </div>
     </div>
   );
