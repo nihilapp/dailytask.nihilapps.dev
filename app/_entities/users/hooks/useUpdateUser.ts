@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { UsersApi } from '@/_entities/users/users.api';
-import type { UpdateUser } from '@/_types';
+import type { UpdateUser } from '@/_entities/users';
 import { userKeys } from '@/_entities/users';
 
 interface UseUpdateUserParams {

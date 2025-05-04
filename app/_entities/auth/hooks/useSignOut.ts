@@ -1,6 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { AuthApi } from '@/_entities/auth/auth.api';
-import type { SignOutUser } from '@/_types';
+import type { SignOutUser } from '@/_entities/user-auth';
 
 export function useSignOut() {
   const query = useMutation({

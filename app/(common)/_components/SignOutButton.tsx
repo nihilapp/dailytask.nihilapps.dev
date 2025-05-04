@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 import type { AxiosError } from 'axios';
 import { cn } from '@/_libs';
 import { useAuthActions, useSignOut, useUserSession } from '@/_entities/auth';
-import type { ApiError } from '@/_types';
+import type { ApiError } from '@/_entities/common/common.types';
 
 interface Props
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,

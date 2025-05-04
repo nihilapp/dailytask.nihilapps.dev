@@ -3,7 +3,8 @@ import axios, {
   type AxiosResponse,
   type InternalAxiosRequestConfig
 } from 'axios';
-import { type ApiResponse, type UserSession } from '@/_types';
+import type { UserSession } from '@/_entities/users';
+import type { ApiResponse } from '@/_entities/common';
 import { siteConfig } from '../_config';
 
 // Zustand 상태 타입 예시 (실제 타입으로 교체 필요)

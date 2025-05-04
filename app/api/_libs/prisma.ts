@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client';
-
+import { PrismaClient } from '@/_prisma/client';
 // PrismaClient는 전역 싱글톤으로 사용합니다.
 // https://www.prisma.io/docs/guides/database/troubleshooting-orm/help-articles/nextjs-prisma-client-dev-practices
 
@@ -23,5 +22,29 @@ export class DB {
 
   static userAuths() {
     return this.client().userAuth;
+  }
+
+  static todos() {
+    return this.client().todo;
+  }
+
+  static issues() {
+    return this.client().issue;
+  }
+
+  static issueTypes() {
+    return this.client().issueType;
+  }
+
+  static issueSchemas() {
+    return this.client().issueSchema;
+  }
+
+  static projectMembers() {
+    return this.client().projectMember;
+  }
+
+  static projects() {
+    return this.client().project;
   }
 }

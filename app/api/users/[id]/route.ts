@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { User } from '@/_prisma/client';
-import type { UpdateUser, ApiResponse, ApiError } from '@/_types';
+import type { ApiResponse, ApiError } from '@/_entities/common';
+import type { UpdateUser } from '@/_entities/users';
 import { DB } from '@/api/_libs';
 
 interface Params {

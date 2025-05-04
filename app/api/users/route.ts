@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { User } from '@/_prisma/client';
 import type {
-  CreateUser, DeleteUsers, ApiResponse, ApiError
-} from '@/_types';
+  ApiResponse, ApiError
+} from '@/_entities/common';
+import type { CreateUser, DeleteUsers } from '@/_entities/users';
 import { DB } from '@/api/_libs';
 import { serverTools } from '@/api/_libs/tools';
 

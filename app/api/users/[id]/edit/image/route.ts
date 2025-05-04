@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { ApiError, ApiResponse, UpdateUserImage } from '@/_types';
+import type { ApiError, ApiResponse } from '@/_entities/common';
+import type { UpdateUserImage } from '@/_entities/users';
 import { DB } from '@/api/_libs';
 
 interface Params {

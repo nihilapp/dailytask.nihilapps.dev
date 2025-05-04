@@ -10,7 +10,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { cn } from '@/_libs';
 import { useAuthActions, useSignIn } from '@/_entities/auth';
-import type { UserSession, ApiResponse } from '@/_types';
+import type { ApiResponse } from '@/_entities/common/common.types';
+import type { UserSession } from '@/_entities/users/users.types';
 
 interface Props
   extends React.FormHTMLAttributes<HTMLFormElement>,
