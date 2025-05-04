@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { DB, serverTools } from '@/api/_libs';
 import type {
-  ApiResponse,
-  ApiError,
   SignInUser,
-  Tokens,
-  UserSession
-} from '@/_types';
+  Tokens
+} from '@/_entities/user-auth';
+import type { UserSession } from '@/_entities/users';
+import type { ApiResponse, ApiError } from '@/_entities/common';
 
 export async function POST(request: NextRequest) {
   try {

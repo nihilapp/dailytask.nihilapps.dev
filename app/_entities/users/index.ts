@@ -11,3 +11,12 @@ export { useDeleteUser } from './hooks/useDeleteUser';
 export { useDeleteManyUsers } from './hooks/useDeleteManyUsers';
 
 export { userKeys } from './users.keys';
+
+export type {
+  CreateUser,
+  UpdateUser,
+  UpdateUserPassword,
+  UpdateUserImage,
+  DeleteUsers,
+  UserSession
+} from './users.types';

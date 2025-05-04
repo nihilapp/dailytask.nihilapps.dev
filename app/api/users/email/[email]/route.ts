@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { User } from '@/_prisma/client';
-import type { ApiResponse, ApiError } from '@/_types';
+import type { ApiResponse, ApiError } from '@/_entities/common';
 import { DB } from '@/api/_libs';
 
 interface Params {

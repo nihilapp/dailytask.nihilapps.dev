@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { ApiError, ApiResponse, UpdateUserPassword } from '@/_types';
+import type { ApiError, ApiResponse } from '@/_entities/common';
+import type { UpdateUserPassword } from '@/_entities/users';
 import { DB } from '@/api/_libs';
 import { serverTools } from '@/api/_libs/tools';
 

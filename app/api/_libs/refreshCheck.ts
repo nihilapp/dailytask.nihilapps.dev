@@ -1,4 +1,4 @@
-import type { RefreshCheckResult } from '@/_types';
+import type { RefreshCheckResult } from '@/_entities/user-auth';
 import { performTokenRefresh } from '@/api/_libs/performRefresh';
 import { serverTools } from '@/api/_libs/tools';
 

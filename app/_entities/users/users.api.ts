@@ -2,7 +2,7 @@ import { Api } from '@/_libs';
 import type { User } from '@/_prisma/client';
 import type {
   CreateUser, UpdateUser, UpdateUserImage, UpdateUserPassword
-} from '@/_types';
+} from '@/_entities/users';
 
 export class UsersApi {
   static async getAll() {

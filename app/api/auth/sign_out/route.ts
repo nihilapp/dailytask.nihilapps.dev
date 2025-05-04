@@ -2,7 +2,10 @@ import { NextRequest, NextResponse } from 'next/server';
 import {
   DB, getHeaderToken, serverTools, refreshCheck
 } from '@/api/_libs';
-import type { ApiResponse, ApiError, SignOutUser } from '@/_types';
+import type {
+  SignOutUser
+} from '@/_entities/user-auth';
+import type { ApiResponse, ApiError } from '@/_entities/common';
 
 export async function POST(request: NextRequest) {
   let idFromBody: string;

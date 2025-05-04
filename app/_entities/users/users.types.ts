@@ -1,5 +1,5 @@
-import type { User, UserRole } from '@prisma/client';
-import type { TokenInfo } from '@/_types/user-auth.types';
+import type { User, UserRole } from '@/_prisma/client';
+import type { TokenInfo } from '@/_entities/user-auth';
 
 export interface CreateUser {
   email: string;

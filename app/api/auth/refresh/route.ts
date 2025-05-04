@@ -1,7 +1,8 @@
 import { NextResponse } from 'next/server';
 import { serverTools } from '@/api/_libs';
 import { refreshCheck } from '@/api/_libs/refreshCheck'; // refreshCheck 함수 임포트
-import type { ApiResponse, ApiError, RefreshApiResponse } from '@/_types'; // 필요한 타입 임포트
+import type { RefreshApiResponse } from '@/_entities/user-auth'; // 필요한 타입 임포트
+import type { ApiResponse, ApiError } from '@/_entities/common';
 
 export async function POST() {
   try {

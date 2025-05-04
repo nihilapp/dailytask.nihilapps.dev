@@ -1,7 +1,8 @@
 import { Api } from '@/_libs';
 import type {
-  RefreshUserAccessToken, SignInUser, SignOutUser, UserSession
-} from '@/_types';
+  RefreshUserAccessToken, SignInUser, SignOutUser
+} from '@/_entities/user-auth';
+import type { UserSession } from '@/_entities/users';
 
 export class AuthApi {
   static async signIn(signInData: SignInUser) {
