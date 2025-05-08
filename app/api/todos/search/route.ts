@@ -7,9 +7,10 @@ import type { Todo } from '@/_prisma/client';
 export async function GET(request: NextRequest) {
   try {
     const { searchParams, } = request.nextUrl;
-    const query = searchParams.get('query');
+    const word = searchParams.get('word');
+    const type = searchParams.get('type') || 'title'; // 기본값은 title
 
-    if (!query) {
+    if (!word) {
       const errorResponse: ApiError = {
         message: '검색어를 제공해야 합니다.',
         response: null,
@@ -21,16 +22,43 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const todos = await DB.todos().findMany({
-      where: {
+    let whereClause = {};
+
+    if (type === 'title') {
+      whereClause = {
         title: {
-          contains: query,
+          contains: word,
         },
+      };
+    } else if (type === 'content') {
+      whereClause = {
+        description: {
+          contains: word,
+        },
+      };
+    } else {
+      const errorResponse: ApiError = {
+        message: '유효하지 않은 검색 유형입니다. title 또는 content를 사용하세요.',
+        response: null,
+      };
+
+      return NextResponse.json(
+        errorResponse,
+        { status: 400, }
+      );
+    }
+
+    const todos = await DB.todos().findMany({
+      where: whereClause,
+      include: {
+        user: true,
       },
     });
 
+    const searchType = type === 'title' ? '제목' : '내용';
+
     const response: ApiResponse<Todo[]> = {
-      message: `${query}와 관련된 할 일 목록을 성공적으로 조회했습니다.`,
+      message: `${searchType}에서 '${word}'와 관련된 할 일 목록을 성공적으로 조회했습니다.`,
       response: todos,
     };
 

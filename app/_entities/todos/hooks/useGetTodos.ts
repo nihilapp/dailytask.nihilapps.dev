@@ -1,20 +1,19 @@
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
-import { UsersApi } from '../users.api';
-import { userKeys } from '@/_entities/users';
+import { TodosApi, todosKeys } from '@/_entities/todos';
 import { useDone, useLoading } from '@/_entities/common';
 import type { ApiResponse } from '@/_entities/common/common.types';
-import type { User } from '@/_prisma/client';
+import type { ExTodo } from '@/_entities/todos/todos.types';
 
-export function useGetUsers(options?: UseQueryOptions<ApiResponse<User[]>>) {
+export function useGetTodos(options?: UseQueryOptions<ApiResponse<ExTodo[]>>) {
   const {
-    data: users,
+    data: todos,
     isLoading,
     isFetching,
     isSuccess,
     ...other
-  } = useQuery<ApiResponse<User[]>>({
-    queryKey: userKeys.list,
-    queryFn: UsersApi.getAll,
+  } = useQuery<ApiResponse<ExTodo[]>>({
+    queryKey: todosKeys.all(),
+    queryFn: TodosApi.getAll,
     ...options,
   });
 
@@ -22,8 +21,8 @@ export function useGetUsers(options?: UseQueryOptions<ApiResponse<User[]>>) {
   const done = useDone(loading, isSuccess);
 
   return {
-    users: users?.response || [],
-    message: users?.message || '',
+    todos: todos?.response || [],
+    message: todos?.message || '',
     loading,
     done,
     ...other,

@@ -19,7 +19,13 @@ export class TodosApi {
 
   static async getAllByTitle(title: string) {
     return Api.getQuery<ExTodo[]>(
-      `/todos/title/${title}`
+      `/todos/search?word=${encodeURIComponent(title)}&type=title`
+    );
+  }
+
+  static async getAllByContent(content: string) {
+    return Api.getQuery<ExTodo[]>(
+      `/todos/search?word=${encodeURIComponent(content)}&type=content`
     );
   }
 

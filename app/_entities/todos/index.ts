@@ -1,4 +1,4 @@
-export { TodosKeys } from './todos.keys';
+export { todosKeys } from './todos.keys';
 
 export { TodosApi } from './todos.api';
 
@@ -9,3 +9,16 @@ export type {
   ExTodo,
   DeleteTodos
 } from './todos.types';
+
+export {
+  useGetTodos,
+  useGetTodoById,
+  useGetTodosByUserId,
+  useGetTodosByTitle,
+  useGetTodosByContent,
+  useCreateTodo,
+  useUpdateTodo,
+  useUpdateTodoStatus,
+  useDeleteTodo,
+  useDeleteManyTodos
+} from './hooks';

@@ -1,5 +1,5 @@
+import type { SiteConfig } from '@/_entities/common';
 import { nihilLogo, nihilLogoWhite } from '@/_images';
-import { SiteConfig } from '@/_types/common.types';
 
 export const siteConfig: SiteConfig = {
   title: '데일리태스크',
