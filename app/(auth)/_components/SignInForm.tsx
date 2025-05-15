@@ -1,16 +1,18 @@
 'use client';
 
 import { cva, type VariantProps } from 'class-variance-authority';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   type InferType, object, string
 } from 'yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useRouter, useSearchParams } from 'next/navigation';
+import type { AxiosError } from 'axios';
+import Link from 'next/link';
 import { cn } from '@/_libs';
-import { useAuthActions, useSignIn } from '@/_entities/auth';
-import type { ApiResponse } from '@/_entities/common/common.types';
+import { useAuthActions, useSignIn, useSignInCallBackUrl } from '@/_entities/auth';
+import type { ApiError, ApiResponse } from '@/_entities/common/common.types';
 import type { UserSession } from '@/_entities/users/users.types';
 
 interface Props
@@ -36,7 +38,10 @@ interface FormValues {
 }
 
 export function SignInForm({ className, ...props }: Props) {
-  const { setUserSession, } = useAuthActions();
+  const [ formError, setFormError, ] = useState('');
+
+  const { setUserSession, setSignInCallBackUrl, } = useAuthActions();
+  const searchParams = useSearchParams();
 
   const model = object({
     email: string()
@@ -70,7 +75,7 @@ export function SignInForm({ className, ...props }: Props) {
 
   const signIn = useSignIn();
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const signInCallBackUrl = useSignInCallBackUrl();
 
   const onSubmitForm: SubmitFormValues = (
     (data) => {
@@ -83,16 +88,24 @@ export function SignInForm({ className, ...props }: Props) {
         onSuccess: (apiResponse: ApiResponse<UserSession>) => {
           setUserSession(apiResponse.response);
 
+          // URL 파라미터의 callbackUrl이 우선순위가 높음
           const callbackUrl = searchParams.get('callbackUrl');
 
           if (callbackUrl && callbackUrl.startsWith('/')) {
             router.push(callbackUrl);
+          } else if (signInCallBackUrl) {
+            // 저장된 signInCallBackUrl로 리다이렉트
+            router.push(signInCallBackUrl);
+            // 사용 후 초기화
+            setSignInCallBackUrl(null);
           } else {
+            // 기본값으로 홈페이지로 이동
             router.push('/');
           }
         },
-        onError: (error) => {
+        onError: (error: AxiosError<ApiError>) => {
           console.error('로그인 실패:', error);
+          setFormError(error.response?.data.message);
         },
       });
     }
@@ -131,9 +144,18 @@ export function SignInForm({ className, ...props }: Props) {
         )}
       </label>
 
+      {formError && (
+        <span>{formError}</span>
+      )}
+
       <div>
         <button>로그인</button>
         <button type='reset'>초기화</button>
+      </div>
+
+      <div>
+        아이디가 없으신가요?
+        <Link href='/auth/signup'>회원가입</Link>
       </div>
     </form>
   );

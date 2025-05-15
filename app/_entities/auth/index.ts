@@ -6,5 +6,6 @@ export { useRefresh } from './hooks/useRefresh';
 
 export {
   useUserSession,
-  useAuthActions
+  useAuthActions,
+  useSignInCallBackUrl
 } from './auth.store';

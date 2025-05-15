@@ -3,10 +3,7 @@
 import { cva, type VariantProps } from 'class-variance-authority';
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { cn } from '@/_libs';
-import { siteConfig } from '@/_config';
-import { useIsDarkMode } from '@/_entities/common';
 
 interface Props
   extends React.HTMLAttributes<HTMLAnchorElement>,
@@ -17,11 +14,22 @@ interface Props
 
 const cssVariants = cva(
   [
-    ``,
+    `flex items-center gap-1`,
+    `font-bold text-xl transition-all duration-200`,
+    `hover:opacity-90 hover:scale-105`,
+    `py-1 px-2 rounded-md`,
   ],
   {
-    variants: {},
-    defaultVariants: {},
+    variants: {
+      size: {
+        default: 'text-xl',
+        small: 'text-lg',
+        large: 'text-2xl',
+      },
+    },
+    defaultVariants: {
+      size: 'default',
+    },
     compoundVariants: [],
   }
 );
@@ -31,8 +39,6 @@ export function Logo({
   className,
   ...props
 }: Props) {
-  const isDarkMode = useIsDarkMode();
-
   return (
     <Link
       href={href}
@@ -42,17 +48,11 @@ export function Logo({
       )}
       {...props}
     >
-      <Image
-        src={
-          isDarkMode
-            ? siteConfig.darkLogo
-            : siteConfig.logo
-        }
-        alt='nihilapps logo'
-        width={100}
-        height={100}
-        className='w-[50px] w-[50px]'
-      />
+      <div className='flex items-center gap-1 bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text'>
+        <span className='text-transparent font-black'>Daily</span>
+        <span className='text-gray-800 font-bold'>Task</span>
+        <span className='ml-1 bg-blue-600 text-white text-xs px-1.5 py-0.5 rounded-md font-semibold'>Beta</span>
+      </div>
     </Link>
   );
 }

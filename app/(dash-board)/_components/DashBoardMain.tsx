@@ -5,16 +5,14 @@ import React from 'react';
 import { cn } from '@/_libs';
 
 interface Props
-  extends React.HTMLAttributes<HTMLElement>,
+  extends React.HTMLAttributes<HTMLDivElement>,
   VariantProps<typeof cssVariants> {
   className?: string;
 }
 
 const cssVariants = cva(
   [
-    `py-6 px-6 mt-auto`,
-    `bg-gray-50 border-t border-gray-100`,
-    `text-center text-gray-500 text-sm`,
+    ``,
   ],
   {
     variants: {},
@@ -23,18 +21,16 @@ const cssVariants = cva(
   }
 );
 
-export function CommonFooter({ className, ...props }: Props) {
+export function DashBoardMain({ className, ...props }: Props) {
   return (
-    <footer
+    <div
       className={cn(
         cssVariants({}),
         className
       )}
       {...props}
     >
-      <div className='container mx-auto'>
-        <p>&copy; {new Date().getFullYear()} DailyTask. 모든 권리 보유.</p>
-      </div>
-    </footer>
+      content
+    </div>
   );
 }

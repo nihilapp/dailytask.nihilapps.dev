@@ -5,9 +5,11 @@ import type { UserSession } from '@/_entities/users';
 
 interface AuthActions {
   setUserSession: (userSession: UserSession | null) => void;
+  setSignInCallBackUrl: (signInCallBackUrl: string | null) => void;
 }
 
 interface AuthState {
+  signInCallBackUrl: string | null;
   userSession: UserSession | null;
   actions: AuthActions;
 }
@@ -16,11 +18,17 @@ const createAuthSlice: StateCreator<
   AuthState,
   [['zustand/immer', never]]
 > = (set) => ({
+  signInCallBackUrl: null,
   userSession: null,
   actions: {
     setUserSession: (userSession: UserSession | null) => set(
       (state) => {
         state.userSession = userSession;
+      }
+    ),
+    setSignInCallBackUrl: (signInCallBackUrl: string | null) => set(
+      (state) => {
+        state.signInCallBackUrl = signInCallBackUrl;
       }
     ),
   },
@@ -38,5 +46,7 @@ const useAuthStore = create<AuthState>()(
 );
 
 export const useUserSession = () => useAuthStore((state) => state.userSession);
+
+export const useSignInCallBackUrl = () => useAuthStore((state) => state.signInCallBackUrl);
 
 export const useAuthActions = () => useAuthStore((state) => state.actions);

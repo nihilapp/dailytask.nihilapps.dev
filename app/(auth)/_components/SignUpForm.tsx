@@ -7,10 +7,10 @@ import {
 } from 'yup';
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import type { UserRole } from '@prisma/client';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/_libs';
 import { useCreateUser } from '@/_entities/users';
+import type { UserRole } from '@/_prisma/client';
 
 interface Props
   extends React.FormHTMLAttributes<HTMLFormElement>,
