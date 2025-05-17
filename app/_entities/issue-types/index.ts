@@ -1,1 +1,0 @@
-export { issueType } from './data';
