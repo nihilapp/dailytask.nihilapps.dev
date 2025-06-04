@@ -58,6 +58,7 @@
 - `/api/todos`: 투두리스트 조회, 생성, 수정, 삭제
 - `/api/todos/user/:userId`: 개인 투두리스트 조회
 - `/api/todos/:id`: 투두리스트 조회, 수정, 삭제
+- `/api/todos/:id/status`: 투두 상태 수정
 - `/api/todos/search`: 투두리스트 검색
 
 ### 인증 및 사용자 관리
