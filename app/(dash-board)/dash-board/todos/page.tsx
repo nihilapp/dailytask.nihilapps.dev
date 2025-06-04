@@ -9,8 +9,10 @@ export const metadata = setMeta({
   url: `/dash-board/todos`,
 });
 
-export default function TodosListPage() {
+export function TodosListPage() {
   return (
     <TodoList />
   );
 }
+
+export default TodosListPage;

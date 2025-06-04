@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { setMeta } from '@/_libs';
 import { SignInForm } from '@/(auth)/_components';
 
@@ -9,8 +9,12 @@ export const metadata = setMeta({
   url: `/auth/signin`,
 });
 
-export default function SignInPage() {
+export function SignInPage() {
   return (
-    <SignInForm />
+    <Suspense>
+      <SignInForm />
+    </Suspense>
   );
 }
+
+export default SignInPage;

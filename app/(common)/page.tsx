@@ -9,8 +9,10 @@ export const metadata = setMeta({
   url: `/`,
 });
 
-export default function HomePage() {
+export function HomePage() {
   return (
     <Home />
   );
 }
+
+export default HomePage;

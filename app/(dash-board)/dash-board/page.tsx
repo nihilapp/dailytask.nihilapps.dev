@@ -9,8 +9,10 @@ export const metadata = setMeta({
   url: `/dash-board`,
 });
 
-export default function DashBoardPage() {
+export function DashBoardPage() {
   return (
     <DashBoardMain />
   );
 }
+
+export default DashBoardPage;

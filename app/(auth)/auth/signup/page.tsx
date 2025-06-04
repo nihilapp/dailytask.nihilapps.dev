@@ -9,8 +9,10 @@ export const metadata = setMeta({
   url: `/auth/signup`,
 });
 
-export default function SignUpPage() {
+export function SignUpPage() {
   return (
     <SignUpForm />
   );
 }
+
+export default SignUpPage;
