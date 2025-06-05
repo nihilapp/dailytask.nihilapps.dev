@@ -70,6 +70,8 @@ export default defineConfig([
       'function-call-argument-newline': [ 'error', 'consistent', ],
       'function-paren-newline': [ 'error', 'multiline', ],
       'no-multiple-empty-lines': [ 'error', { max: 1, maxBOF: 0, maxEOF: 0, }, ],
+      'no-multi-spaces': [ 'error', ],
+      'no-irregular-whitespace': 'error',
       'no-param-reassign': 'off',
       'eol-last': [ 'warn', 'always', ],
       'no-plusplus': 'off',
