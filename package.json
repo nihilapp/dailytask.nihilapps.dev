@@ -1,6 +1,5 @@
 {
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build:remove": "rm -rf node_modules/.cache && rm -rf build/",
     "serve": "pnpm build:remove && next dev",
