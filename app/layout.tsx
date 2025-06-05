@@ -54,7 +54,7 @@ interface Props {
   children: React.ReactNode;
 }
 
-export default function AppLayout({ children, }: Props) {
+export function AppLayout({ children, }: Props) {
   return (
     <html lang='ko'>
       <head>
@@ -73,3 +73,5 @@ export default function AppLayout({ children, }: Props) {
     </html>
   );
 }
+
+export default AppLayout;
